@@ -66,7 +66,7 @@ def doar():
         conn.commit()
 
     # Retorna uma mensagem de sucesso e o código HTTP 201 (Created)
-    return jsonify({'message': 'Livro doado com sucesso!'}), 201
+    return jsonify({'mensagem': 'Livro doado com sucesso!'}), 201
 
 
 @app.route('/livros', methods=['GET'])
@@ -82,7 +82,7 @@ def listar_livros():
             "titulo": livro[1],
             "categoria": livro[2],
             "autor": livro[3],
-            "imagem_url": [4]
+            "imagem_url": livro[4]
         }
         livros_formatados.append(dicionario_livros)
 
@@ -99,7 +99,7 @@ def deletar_livro(livro_id):
     if cursor.rowcount == 0:
         return jsonify({"erro": "Livro não encontrado"}), 404
 
-    return jsonify({"menssagem": "Livro deletado"})
+    return jsonify({"mensagem": "Livro deletado"})
 
 
 # Verifica se o script está sendo executado diretamente
