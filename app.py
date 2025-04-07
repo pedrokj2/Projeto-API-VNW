@@ -1,8 +1,6 @@
 # Importa o Flask para criar a aplicação web e o request para obter dados das requisições HTTP
 # O jsonify é usado para converter dicionários Python em respostas JSON
 from flask import Flask, request, jsonify, render_template
-
-
 # Importa o módulo sqlite3 para manipulação do banco de dados SQLite
 import sqlite3
 from flask_cors import CORS
@@ -89,6 +87,19 @@ def listar_livros():
         livros_formatados.append(dicionario_livros)
 
     return jsonify(livros_formatados)
+
+
+@app.route('/livros/<int:livro_id>', methods=['DELETE'])
+def deletar_livro(livro_id):
+    with sqlite3.connect('database.db') as conn:
+        cursor = conn.cursor()
+        cursor.execute("DELETE FROM livros WHERE id = ?", (livro_id,))
+        conn.commit()
+
+    if cursor.rowcount == 0:
+        return jsonify({"erro": "Livro não encontrado"}), 404
+
+    return jsonify({"menssagem": "Livro deletado"})
 
 
 # Verifica se o script está sendo executado diretamente
