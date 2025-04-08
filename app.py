@@ -99,7 +99,7 @@ def deletar_livro(livro_id):
     if cursor.rowcount == 0:
         return jsonify({"erro": "Livro não encontrado"}), 404
 
-    return jsonify({"mensagem": "Livro deletado"})
+    return jsonify({"mensagem": "Livro deletado"}), 200
 
 
 # Verifica se o script está sendo executado diretamente
