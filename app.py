@@ -59,8 +59,8 @@ def doar():
     # Abre uma conexão com o banco de dados usando o contexto "with"
     with sqlite3.connect('database.db') as conn:
         # Insere os dados do livro na tabela "livros" utilizando parâmetros para evitar SQL Injectio
-        conn.execute("""INSERT INTO livros (titulo, categoria, autor, imagem_url)
-                     VALUES (?,?,?,?)""", (titulo, categoria, autor, imagem_url))
+        conn.execute(""" INSERT INTO livros (titulo, categoria, autor, imagem_url)
+                     VALUES (?,?,?,?) """, (titulo, categoria, autor, imagem_url))
 
         # Confirma as alterações no banco de dados
         conn.commit()
